@@ -31,6 +31,7 @@ class Artist
         end 
         artist 
     end 
+    # self.find(name) ? self.find(name) : self.new(name)
 
     def print_songs
         songs.each { |song| puts "#{song.name}" }
