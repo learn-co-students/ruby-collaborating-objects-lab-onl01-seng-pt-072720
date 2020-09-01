@@ -10,17 +10,14 @@ class MP3Importer
   
   def files
     @files = Dir.entries(@path)
-    @files.delete_if {|file| file == "." || file == ".."}
+    @files.delete_if {|file| file == ".mp3"}
+    binding.pry 
+    @files
   end 
   
   def import 
     self.files.each do |file| 
-      song = Song.new_by_filename(file)
-      if Artist.all.include?(song.artist)
-        nil 
-      else Artist.all << song.artist 
-      end 
-    end 
+      Song.new_by_filename(file)
   end
   
 end 
