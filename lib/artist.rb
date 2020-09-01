@@ -2,26 +2,24 @@ require 'pry'
 
 class Artist
   
-  attr_accessor :name, :songs
+  attr_accessor :name
+  attr_reader :songs 
   
   @@all = [] 
   
   def initialize(name)
     @name = name 
-    @songs = [] 
+    @songs = []
+    @@all << self 
   end
   
   def self.all 
     @@all 
   end 
 
-  def add_song(song)
-    @songs << song 
+  def add_song
+      @songs << Song.new 
   end 
-  
-  # def self.all 
-  #   @@all << self 
-  # end 
   
   def songs 
     Song.all.select {|song| song.artist == self} 

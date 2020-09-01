@@ -10,6 +10,10 @@ class Song
     @name = name 
   end 
   
+  def self.all
+    @@all
+  end 
+  
   def self.new_by_filename(filename)
     parsed = filename.split(" - ")
     song = self.new(parsed[1])
