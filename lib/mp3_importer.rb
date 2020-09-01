@@ -8,16 +8,23 @@ class MP3Importer
     @path = path
   end 
   
+  # def files
+  #   @files = Dir.entries(@path)
+  #   @files.select do |file| 
+  #     file.include?(".mp3") && file != @path 
+  #     file.chomp(".mp3")
+  #     @path << file
+  #   end 
+  # end 
+  
   def files
-    @files = Dir.entries(@path)
-    @files.delete_if {|file| file == ".mp3"}
-    binding.pry 
-    @files
-  end 
+    Dir[@path+"/*.mp3"].map { |file| file.split("/").last }
+  end
   
   def import 
-    self.files.each do |file| 
+    files.each do |file| 
       Song.new_by_filename(file)
-  end
+    end
+  end 
   
 end 
